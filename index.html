@@ -24,12 +24,12 @@
         const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); // Convert bytes to hex
         return hashHex; // Return the hexadecimal hash
         }
-        form.onsubmit = function(event) {
+        form.onsubmit = async function(event) {
             event.preventDefault();
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             console.log(username + password)
-            const hash = sha256(username + password); // Simple encoding for example purposes
+            const hash = await sha256(username + password); // Simple encoding for example purposes
             console.log(hash)
 
             if (hash === predefinedHash) {
