@@ -16,10 +16,10 @@
         const predefinedHash = "exampleHash"; // Replace this with your hash
         const form = document.getElementById('loginForm');
 
-        async function sha256(message) {
+        function sha256(message) {
         const encoder = new TextEncoder(); // Encode the string as a Uint8Array
         const data = encoder.encode(message); // Encode the input message
-        const hashBuffer = await crypto.subtle.digest('SHA-256', data); // Hash the data
+        const hashBuffer = crypto.subtle.digest('SHA-256', data); // Hash the data
         const hashArray = Array.from(new Uint8Array(hashBuffer)); // Convert buffer to byte array
         const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); // Convert bytes to hex
         return hashHex; // Return the hexadecimal hash
