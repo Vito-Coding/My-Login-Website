@@ -16,13 +16,21 @@
         const predefinedHash = "exampleHash"; // Replace this with your hash
         const form = document.getElementById('loginForm');
 
+        async function sha256(message) {
+        const encoder = new TextEncoder(); // Encode the string as a Uint8Array
+        const data = encoder.encode(message); // Encode the input message
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data); // Hash the data
+        const hashArray = Array.from(new Uint8Array(hashBuffer)); // Convert buffer to byte array
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); // Convert bytes to hex
+        return hashHex; // Return the hexadecimal hash
+        }
         form.onsubmit = function(event) {
             event.preventDefault();
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            const hash = btoa(username + password); // Simple encoding for example purposes
+            const hash = sha256(username + password); // Simple encoding for example purposes
 
-            if (hash === predefinedHash) {
+            if (hash === "c0341581c03036ffc158be8a49e420e17e2fce2d7cef0cf8bc6db21751028a4b") {
                 window.location.href = "success.html";
             } else {
                 alert('Invalid credentials');
