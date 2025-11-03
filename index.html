@@ -28,7 +28,9 @@
             event.preventDefault();
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
+            console.log(username + password)
             const hash = sha256(username + password); // Simple encoding for example purposes
+            console.log(hash)
 
             if (hash === "c0341581c03036ffc158be8a49e420e17e2fce2d7cef0cf8bc6db21751028a4b") {
                 window.location.href = "success.html";
