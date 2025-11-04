@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Login</h1>
@@ -30,6 +31,7 @@
             const password = document.getElementById('password').value;
             console.log(username + password)
             const hash = await sha256(username + password); // Simple encoding for example purposes
+            const temp = sha256(username + password)
             console.log(hash)
 
             if (hash === predefinedHash) {
